@@ -9,8 +9,8 @@ namespace ConsoleApp2.ConsoleApp
             User[] people = new User[]
             {
                 new User("euw3uif", "Artem", true),
-                new User("wiobnfw", "Sofy", true),
-                new User("wfne", "Liara", false)
+                new User("wiobnfw", "Sofy", false),
+                new User("wfne", "Liara", true)
             };
             foreach (var item in people)
             {

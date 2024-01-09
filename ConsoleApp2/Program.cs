@@ -2,8 +2,11 @@
 using System.Diagnostics;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace ConsoleApp2.ConsoleApp
+namespace ConsoleApp2.Task1
 {
+    /// <summary>
+    /// Задание 13.6.1
+    /// </summary>
     class Program
     {
         static void Main(string[] args)

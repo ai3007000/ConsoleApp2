@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ConsoleApp2.ConsoleApp
 {
@@ -6,37 +8,29 @@ namespace ConsoleApp2.ConsoleApp
     {
         static void Main(string[] args)
         {
-            User[] people = new User[]
+            using (StreamReader reader = new StreamReader("E:\\Програмирование\\Text1.txt"))
             {
-                new User("euw3uif", "Artem", true),
-                new User("wiobnfw", "Sofy", false),
-                new User("wfne", "Liara", true)
-            };
-            foreach (var item in people)
-            {
-                Console.WriteLine($"Здравствуй, {item.Name}!");
-                if (!item.IsPremium)
-                {
-                    ShowAds();
-                }
+                char[] delimiters = new char[] { ' ', '\r', '\n' };
+                string text = reader.ReadToEnd();
+                
+                var words = text.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+
+                Stopwatch stopwatch1 = new Stopwatch();
+
+                stopwatch1.Start();
+                List<string> list = new List<string>(words);
+                stopwatch1.Stop();
+
+                Stopwatch stopwatch2 = new Stopwatch();
+
+                stopwatch2.Start();
+                LinkedList<string> linkedlist = new LinkedList<string>(words);
+                stopwatch2.Stop();
+
+                Console.WriteLine($"Время первого теста: {stopwatch1.ElapsedMilliseconds}");
+                Console.WriteLine($"Время второго теста: {stopwatch2.ElapsedMilliseconds}");
             }
         }
-        /// <summary>
-        /// Реклама
-        /// </summary>
-        static void ShowAds()
-        {
-            Console.WriteLine("Посетите наш новый сайт с бесплатными играми free.games.for.a.fool.com");
-            // Остановка на 1 с
-            Thread.Sleep(1000);
-
-            Console.WriteLine("Купите подписку на МыКомбо и слушайте музыку везде и всегда.");
-            // Остановка на 2 с
-            Thread.Sleep(2000);
-
-            Console.WriteLine("Оформите премиум-подписку на наш сервис, чтобы не видеть рекламу.");
-            // Остановка на 3 с
-            Thread.Sleep(3000);
-        }
+        
     }
 }
